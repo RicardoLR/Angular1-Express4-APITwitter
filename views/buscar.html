@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>  
+		<title> Spring Integratio with AngularJS 1.x </title>  
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		
+		<script src="js/lib/angular.min.js"></script>
+
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-resource.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-sanitize.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"></script>
+		
+				<!-- Integracion de angulae 1 con JSP -->
+		<script src="js/app.js"></script>
+		<script src="js/service/user_service.js"></script>
+		<script src="js/controller/user_controller.js"></script>
+
+		<!-- llamamos la librería jquery  desde sus cdn Hosted-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<!-- llamamos al jquery.expander.js mira sus archivos de descarga-->
+		<script src="js/lib/jquery.expander.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function() {   
+     	
+     	// use esta configuracion simple para valores por defecto
+      //$('div.expandable p').expander();
+      // *** O ***
+      // configure de la siguiente manera
+      $('div.expandable p').expander({
+	      slicePoint: 10, // si eliminamos por defecto es 100 caracteres
+	      expandText: '[...]', // por defecto es 'read more...'
+	      collapseTimer: 2000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
+	      userCollapseText: '[^]' // por defecto es 'read less...'
+	    });
+
+		});
+		</script>
+
+	</head>
+	
+	<!-- ================================= 	Ruta =================================
+
+	http://localhost:8080/Spring4MVCJspAngularJS/ 
+	================================================================== -->
+
+	<!-- Nombre a mi ng-app="myApp" -->
+	<body ng-controller="UserController" style ='background-color: #2ba6cb;'>
+		<br />
+
+	
+		<div class="container">
+
+				<!-- this form will trigger the getTweets function in the javascript controller on submit -->
+				<form>
+
+					<!-- this text input is binded to a variable in the javascript controller -->
+				  <input type="text" class="form-control" placeholder="Ejemplo 'Javascript'" ng-model="busqueda1">
+				  <input type="text" class="form-control" placeholder="Ejemplo 'Ruby'" ng-model="busqueda2">
+				  <input type="number" class="form-control" placeholder="Cuantas peticiones: ejemplo '5'" ng-model="cuantos">
+				  <input type="text" class="form-control" placeholder="Ejemplo 'en'" ng-model="lenguajebuscado">
+
+					<button class="btn btn-default" type="submit" ng-click="submit()" >Buscar</button>
+
+				</form>
+		</div>
+
+			
+		<br />
+
+		<div class="container-fluid">
+		  <div class="center">
+
+					<div ng-repeat="tweet in mis_tweets">
+		
+				    <div class="col-sm-4" style="background-color:lavender;">
+		
+							<div class="card" style="width: 20rem;">
+							  <img class="card-img-top" ng-src="{{tweet.user.profile_background_image_url}}" 
+							  	alt="Card image cap"
+							  	class="img-responsive"  
+							  	width="150" height="150">
+							  <div class="card-block">
+									<h4 class="card-title"> <strong> Usuario: </strong> {{tweet.user.name}} </h4>
+									<p class="card-text"> <strong> Texto: </strong>  {{tweet.text}}</p>
+							  </div>
+							  
+							  <strong> Hastags puestos: </strong> 
+							  <div class="expandable" ng-repeat="hashtag in tweet.entities.hashtags">
+								  <ul>
+										<li> {{hashtag.text}} </li>
+								  </ul>
+								</div>									
+
+							  <div class="card-block">
+									<li class="list-group-item"> followers_count: {{tweet.user.followers_count}} </li>
+									<li class="list-group-item"> friends_count: {{tweet.user.friends_count}} </li>
+							  </div>
+							</div>
+
+						</div>	   
+		   	 	</div>
+
+		  </div>
+		</div>
+
+
+	</body>
+
+</html>
+
+
