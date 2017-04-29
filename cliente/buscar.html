@@ -40,11 +40,6 @@
 		</script>
 
 	</head>
-	
-	<!-- ================================= 	Ruta =================================
-
-	http://localhost:8080/Spring4MVCJspAngularJS/ 
-	================================================================== -->
 
 	<!-- Nombre a mi ng-app="myApp" -->
 	<body ng-controller="UserController" style ='background-color: #2ba6cb;'>
@@ -57,10 +52,13 @@
 				<form>
 
 					<!-- this text input is binded to a variable in the javascript controller -->
-				  <input type="text" class="form-control" placeholder="Ejemplo 'Javascript'" ng-model="busqueda1">
-				  <input type="text" class="form-control" placeholder="Ejemplo 'Ruby'" ng-model="busqueda2">
-				  <input type="number" class="form-control" placeholder="Cuantas peticiones: ejemplo '5'" ng-model="cuantos">
-				  <input type="text" class="form-control" placeholder="Ejemplo 'en'" ng-model="lenguajebuscado">
+				  <input type="text" class="form-control" placeholder="Buscar... ejemplo:'Javascript'" ng-model="busqueda1">
+				  <input type="text" class="form-control" placeholder="Buscar... ejemplo:'Ruby'" ng-model="busqueda2">
+				  <input type="number" class="form-control" placeholder="¿Cuantas peticiones?: ejemplo '5'" ng-model="cuantos">
+					<form>
+					  <input type="radio" name="gender" value="en" checked ng-model="lenguajebuscado"> Ingles <br>
+					  <input type="radio" name="gender" value="es" ng-model="lenguajebuscado"> Español <br>
+					</form>
 
 					<button class="btn btn-default" type="submit" ng-click="submit()" >Buscar</button>
 
